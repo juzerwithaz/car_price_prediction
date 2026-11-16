@@ -1,0 +1,26 @@
+AUTOPRICE COMPASS - DATASET OVERVIEW
+=============================================
+Records after removing missing/invalid target prices: 8015
+Meaningful original features: 9
+
+Missing values:
+Car Name      1
+Year          1
+Distance      0
+Owner         0
+Fuel          0
+Location    213
+Drive         0
+Type          0
+Price         0
+
+Numerical summary:
+              Year       Distance        Owner         Price
+count  8014.000000    8015.000000  8015.000000  8.015000e+03
+mean   2016.995009   52621.411728     1.300187  5.748829e+05
+std       2.861454   29182.922728     0.510893  2.651049e+05
+min    2010.000000       0.000000     1.000000  1.190000e+05
+25%    2015.000000   30730.000000     1.000000  3.930000e+05
+50%    2017.000000   50359.000000     1.000000  5.350000e+05
+75%    2019.000000   71762.000000     2.000000  6.980000e+05
+max    2023.000000  971212.000000     4.000000  3.300000e+06

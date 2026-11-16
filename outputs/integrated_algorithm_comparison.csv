@@ -1,0 +1,7 @@
+Review,Algorithm,Task,Primary_Metric,Result
+Review 1,Linear Regression,Predict continuous car price,RMSE,105096.38326689012
+Review 1,Random Forest Regression,Predict continuous car price,RMSE,105298.57917934415
+Review 1,Logistic Regression,Classify price category,Weighted F1,0.7997793531825022
+Review 1,Random Forest Classification,Classify price category,Weighted F1,0.774637407158447
+Review 2,K-Means,Group similar car listings,Silhouette,0.21670250410696645
+Review 2,Gaussian HMM,Infer hidden vehicle-value cohort regimes,Log likelihood,-144.01419876672216

@@ -1,0 +1,3 @@
+"""
+AutoPrice Compass package.
+"""

@@ -1,0 +1,11 @@
+Column,Data_Type,Missing_Values,Unique_Values
+Car Name,object,1,126
+Year,float64,1,14
+Distance,float64,0,7715
+Owner,float64,0,4
+Fuel,object,0,4
+Location,object,213,436
+Drive,object,0,2
+Type,object,0,5
+Price,int64,0,1354
+Log_Distance,float64,0,7715

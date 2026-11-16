@@ -1,0 +1,57 @@
+
+AUTOPRICE COMPASS - INTEGRATED PROJECT RESULTS
+================================================
+
+DATASET
+- Records used: 8015
+- Original meaningful features: 9
+- Target variable for regression: Price (INR)
+- Classification target: Price_Category (Budget / Mid-range / Premium)
+- Price category boundaries are in price_category_boundaries.csv.
+
+REVIEW 1 - REGRESSION
+- Best model by RMSE: Linear Regression
+- MAE: INR 69,128.93
+- RMSE: INR 105,096.38
+- R2: 0.8291
+See regression_comparison.csv and regression_actual_vs_predicted.png.
+
+REVIEW 1 - CLASSIFICATION
+- Best model by weighted F1: Logistic Regression
+- Accuracy: 0.7991
+- Weighted precision: 0.8006
+- Weighted recall: 0.7991
+- Weighted F1: 0.7998
+See classification_comparison.csv and classification_confusion_matrix.png.
+
+REVIEW 2 - K-MEANS
+- Selected K: 2
+- Silhouette (sampled): 0.2167
+- Davies-Bouldin: 1.6768
+- Calinski-Harabasz: 2497.5455
+- Highest-median-price cluster: Higher-priced segment
+- Lowest-median-price cluster: Lower-priced segment
+See cluster_summary.csv, kmeans_elbow.png and kmeans_clusters_pca.png.
+
+REVIEW 2 - HMM
+- Model: 3-state Gaussian HMM
+- Log likelihood: -144.0142
+- Highest-average-price inferred state: (np.int64(0), 'Premium-like regime')
+- Lowest-average-price inferred state: (np.int64(1), 'Budget-like regime')
+See hmm_state_summary.csv, hmm_vehicle_value_regimes.png and
+hmm_transition_matrix.png.
+
+IMPORTANT METHODOLOGICAL LIMITATION
+The Year column represents vehicle manufacturing year, not the date of
+a historical transaction. HMM is therefore used as exploratory
+vehicle-year cohort hidden-state analysis, not as a validated future
+price forecasting model. The dataset does not contain repeated
+historical prices for the same vehicle.
+
+INTEGRATED PROJECT CONCLUSION
+Regression estimates a numerical used-car price. Classification
+assigns a price segment. K-Means groups similar listings, while HMM
+explores hidden value regimes across vehicle-year cohorts. Together,
+the four approaches provide complementary views of the same used-car
+pricing problem. They should be evaluated using task-appropriate
+metrics rather than comparing unlike metric values directly.

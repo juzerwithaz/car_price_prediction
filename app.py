@@ -127,30 +127,38 @@ with tab_val:
         st.markdown("### 📝 Enter Car Details")
         st.caption("Provide the vehicle specifications to get an instant appraisal.")
 
-        with st.form("car_valuation_form"):
-            car_name = st.selectbox("Brand & Model", options["car_names"], index=0)
-            
-            f1, f2 = st.columns(2)
-            with f1:
-                year = st.selectbox("Manufacturing Year", options["years"], index=4) # 2019
-            with f2:
-                car_type = st.selectbox("Body Type", options["types"], index=0)
+        car_name = st.selectbox("Brand & Model", options["car_names"], index=0)
+        
+        # Automatically detect and preselect body type based on selected car model
+        auto_body = options.get("car_to_type", {}).get(car_name, options["types"][0])
+        type_idx = options["types"].index(auto_body) if auto_body in options["types"] else 0
 
-            f3, f4 = st.columns(2)
-            with f3:
-                fuel = st.selectbox("Fuel Type", options["fuels"], index=options["fuels"].index("PETROL") if "PETROL" in options["fuels"] else 0)
-            with f4:
-                drive = st.selectbox("Transmission", options["drives"], index=0)
+        f1, f2 = st.columns(2)
+        with f1:
+            year = st.selectbox("Manufacturing Year", options["years"], index=4) # 2019
+        with f2:
+            car_type = st.selectbox(
+                "Body Type",
+                options["types"],
+                index=type_idx,
+                help=f"Automatically auto-filled as '{auto_body}' for {car_name}."
+            )
 
-            distance = st.number_input("Kilometers Driven", min_value=100, max_value=500000, value=42000, step=1000)
-            
-            f5, f6 = st.columns(2)
-            with f5:
-                owner = st.selectbox("Previous Owners", [1, 2, 3, 4], index=0)
-            with f6:
-                location = st.selectbox("Registration / Location", options["locations"], index=options["locations"].index("MH-14") if "MH-14" in options["locations"] else 0)
+        f3, f4 = st.columns(2)
+        with f3:
+            fuel = st.selectbox("Fuel Type", options["fuels"], index=options["fuels"].index("PETROL") if "PETROL" in options["fuels"] else 0)
+        with f4:
+            drive = st.selectbox("Transmission", options["drives"], index=0)
 
-            submit_val = st.form_submit_button("⚡ Calculate Fair Market Price", use_container_width=True, type="primary")
+        distance = st.number_input("Kilometers Driven", min_value=100, max_value=500000, value=42000, step=1000)
+        
+        f5, f6 = st.columns(2)
+        with f5:
+            owner = st.selectbox("Previous Owners", [1, 2, 3, 4], index=0)
+        with f6:
+            location = st.selectbox("Registration / Location", options["locations"], index=options["locations"].index("MH-14") if "MH-14" in options["locations"] else 0)
+
+        st.caption(f"💡 Body Type auto-detected: **{auto_body}** (based on {car_name} specifications)")
 
     # Evaluate prediction
     res = predict_car_valuation(

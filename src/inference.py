@@ -133,8 +133,14 @@ def get_feature_options() -> Dict[str, List[Any]]:
     min_year = int(df["Year"].min())
     max_year = int(df["Year"].max())
     
+    # 1-to-1 mapping from Car Name to vehicle Body Type
+    car_to_type = df.groupby("Car Name")["Type"].agg(
+        lambda s: s.mode().iloc[0] if not s.mode().empty else s.iloc[0]
+    ).to_dict()
+
     return {
         "car_names": popular_cars,
+        "car_to_type": car_to_type,
         "locations": locations,
         "fuels": fuels,
         "drives": drives,
